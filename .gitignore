@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment (uv lo gestiona, no va en git)
+.venv/
+
+# Artefactos del modelo (generados por training/train.py, no son código)
+models/*.pkl
+models/*.joblib
+models/*.json
+
+# uv.lock SÍ va en git — es el lockfile determinístico
+# pyproject.toml SÍ va en git
+
+# Testing y coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDEs
+.venv/
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Variables de entorno (nunca commitear secretos)
+.env
+.env.*
+!.env.example
+
+# Archivos temporales del proyecto
+docs/initial_prompt.txt
