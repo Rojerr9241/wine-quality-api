@@ -1,0 +1,18 @@
+# Virtual environment: rebuilt inside the image by uv, never copied in
+.venv/
+
+# Git metadata and CI config: irrelevant at runtime
+.git/
+.github/
+
+# Test artifacts and caches
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Not needed to run the API — only to develop/document it
+tests/
+docs/
+
+# Secrets: never bake into an image
+.env
