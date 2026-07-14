@@ -3,16 +3,10 @@ from pydantic import BaseModel, Field
 
 # Request schema — validated automatically by FastAPI before reaching endpoint logic
 class WineFeatures(BaseModel):
-    fixed_acidity: float = Field(
-        ..., description="Fixed acidity (g/dm³)", examples=[7.4]
-    )
-    volatile_acidity: float = Field(
-        ..., description="Volatile acidity (g/dm³)", examples=[0.7]
-    )
+    fixed_acidity: float = Field(..., description="Fixed acidity (g/dm³)", examples=[7.4])
+    volatile_acidity: float = Field(..., description="Volatile acidity (g/dm³)", examples=[0.7])
     citric_acid: float = Field(..., description="Citric acid (g/dm³)", examples=[0.0])
-    residual_sugar: float = Field(
-        ..., description="Residual sugar (g/dm³)", examples=[1.9]
-    )
+    residual_sugar: float = Field(..., description="Residual sugar (g/dm³)", examples=[1.9])
     chlorides: float = Field(
         ..., description="Chlorides / sodium chloride (g/dm³)", examples=[0.076]
     )
@@ -23,9 +17,7 @@ class WineFeatures(BaseModel):
         ..., description="Total sulfur dioxide (mg/dm³)", examples=[34.0]
     )
     density: float = Field(..., description="Density (g/cm³)", examples=[0.9978])
-    ph: float = Field(
-        ..., ge=0, le=14, description="pH level (0–14 scale)", examples=[3.51]
-    )
+    ph: float = Field(..., ge=0, le=14, description="pH level (0–14 scale)", examples=[3.51])
     sulphates: float = Field(..., description="Sulphates (g/dm³)", examples=[0.56])
     alcohol: float = Field(
         ..., ge=0, le=100, description="Alcohol content (% volume)", examples=[9.4]

@@ -12,7 +12,9 @@ from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-DATA_URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+DATA_URL = (
+    "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+)
 MODELS_DIR = Path(__file__).parent.parent / "models"
 
 
@@ -24,9 +26,7 @@ def train_pipeline(df: pd.DataFrame, target: str):
     X = df.drop(target, axis=1)
     y = df[target]
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     pipeline = Pipeline(
         [
@@ -57,9 +57,7 @@ def save_artifacts(pipeline, feature_names, accuracy):
 
 def main():
     wine_df = load_data(DATA_URL)
-    pipeline, X_test, y_test, feature_names, cv_scores = train_pipeline(
-        wine_df, "quality"
-    )
+    pipeline, X_test, y_test, feature_names, cv_scores = train_pipeline(wine_df, "quality")
     y_pred = pipeline.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
     save_artifacts(pipeline, feature_names, accuracy)
