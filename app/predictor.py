@@ -4,15 +4,23 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
-from .schemas import WineFeatures, PredictionResponse, ModelInfoResponse
+from .schemas import ModelInfoResponse, PredictionResponse, WineFeatures
 
 MODELS_DIR = Path(__file__).parent.parent / "models"
 
 # Column names as the pipeline expects them (matches training data)
 FEATURE_NAMES = [
-    "fixed acidity", "volatile acidity", "citric acid", "residual sugar",
-    "chlorides", "free sulfur dioxide", "total sulfur dioxide",
-    "density", "pH", "sulphates", "alcohol",
+    "fixed acidity",
+    "volatile acidity",
+    "citric acid",
+    "residual sugar",
+    "chlorides",
+    "free sulfur dioxide",
+    "total sulfur dioxide",
+    "density",
+    "pH",
+    "sulphates",
+    "alcohol",
 ]
 
 # Loaded once at import time — avoids reloading on every request

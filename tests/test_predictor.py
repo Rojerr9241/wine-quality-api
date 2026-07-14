@@ -1,5 +1,5 @@
 from app import predictor
-from app.schemas import WineFeatures, PredictionResponse, ModelInfoResponse
+from app.schemas import ModelInfoResponse, PredictionResponse, WineFeatures
 
 
 def test_predict_returns_valid_response(sample_payload):
