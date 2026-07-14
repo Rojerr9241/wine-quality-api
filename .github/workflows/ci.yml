@@ -25,6 +25,9 @@ jobs:
 
       - name: Format check (ruff format)
         run: uv run ruff format --check .
+      
+      - name: Train model
+        run: uv run python -m training.train
 
       - name: Run tests
         run: uv run pytest
