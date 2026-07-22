@@ -38,18 +38,19 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          role-to-assume: arn:aws:iam::897081433974:role/github-actions-ecr-push
-          aws-region: us-east-1
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Log in to ECR
-        uses: aws-actions/amazon-ecr-login@v2
+      - name: Set lowercase image name
+        run: echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
 
       - name: Build and push image
         uses: docker/build-push-action@v6
@@ -57,5 +58,5 @@ jobs:
           context: .
           push: true
           tags: |
-            897081433974.dkr.ecr.us-east-1.amazonaws.com/wine-quality-api:latest
-            897081433974.dkr.ecr.us-east-1.amazonaws.com/wine-quality-api:${{ github.sha }}
+            ghcr.io/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
